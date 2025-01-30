@@ -4,6 +4,6 @@ import { MountController } from './mount.controller';
 
 @Module({
   providers: [MountService],
-  controllers: [MountController]
+  controllers: [MountController],
 })
 export class MountModule {}
