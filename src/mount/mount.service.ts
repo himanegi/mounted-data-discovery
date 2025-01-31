@@ -32,4 +32,10 @@ export class MountService {
 
     return files.concat(...results);
   }
+
+  async onModuleDestroy() {
+    if (this.pool) {
+      await this.pool.terminate();
+    }
+  }
 }
