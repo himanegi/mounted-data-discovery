@@ -1,9 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, OnModuleDestroy } from '@nestjs/common';
 import * as path from 'path';
 import * as workerpool from 'workerpool';
 
 @Injectable()
-export class MountService {
+export class MountService implements OnModuleDestroy {
   private pool: workerpool.Pool;
   constructor() {
     this.pool = workerpool.pool(path.join(__dirname, 'scan-worker'), {
