@@ -3,6 +3,7 @@
 /node_modules
 /build
 /test-dir
+/nfs_mount
 
 # Logs
 logs

@@ -3,11 +3,11 @@ import { MountService } from './mount.service';
 
 @Controller('mount')
 export class MountController {
-  rootDir = 'test-dir';
+  rootDir = 'nfs_mount';
   constructor(private mountService: MountService) {}
 
   @Get('scan')
-  nfs() {
+  scan() {
     return this.mountService.scan(this.rootDir);
   }
 }

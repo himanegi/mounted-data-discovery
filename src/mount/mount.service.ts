@@ -15,15 +15,16 @@ export class MountService {
     try {
       return await this.pool.exec('dirScan', [dirPath]);
     } catch (error) {
-      console.log('Worker error: ', error);
+      console.log('workerpool error: ', error);
       throw error;
     }
   }
 
   async scan(dirPath: string) {
-    const files = await this.workerScan(dirPath);
+    const files = (await this.workerScan(dirPath)) || [];
+    if (files.length === 0) throw new Error('no files found!');
 
-    const dirs = files.filter((file) => file.isDirectory());
+    const dirs = files.filter((file) => file.isDirectory);
 
     const results = await Promise.all(
       dirs.map((dir) => this.scan(dir.filePath)),
